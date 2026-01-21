@@ -4,11 +4,9 @@
       <h2 class="section-title">About Me</h2>
       <div class="about-content">
         <div class="about-image">
-          <div class="image-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
+          <div class="image-wrapper">
+             <!-- Replace the src below with your profile picture -->
+            <img src="/placeholder-profile.png" alt="Profile Picture" class="profile-pic" />
           </div>
           <div class="stats">
             <div class="stat-item">
@@ -37,32 +35,6 @@
             I'm constantly learning and staying updated with the latest advancements in AI/ML, always 
             looking for opportunities to apply cutting-edge technologies to solve real-world problems.
           </p>
-          <div class="highlights">
-            <div class="highlight-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Deep Learning & Neural Networks</span>
-            </div>
-            <div class="highlight-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Full-Stack Development</span>
-            </div>
-            <div class="highlight-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Data Science & Analytics</span>
-            </div>
-            <div class="highlight-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Unity Game Development</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -78,13 +50,14 @@ export default {
 <style scoped>
 .about {
   background: var(--bg-secondary);
+  padding: 3rem 0; /* Compact padding */
 }
 
 .about-content {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 4rem;
-  align-items: start;
+  gap: 3rem;
+  align-items: center;
 }
 
 .about-image {
@@ -92,22 +65,28 @@ export default {
   top: 100px;
 }
 
-.image-placeholder {
+.image-wrapper {
   width: 100%;
   aspect-ratio: 1;
-  background: var(--gradient-1);
   border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  background: var(--card-bg); /* Fallback */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
 }
 
-.image-placeholder svg {
-  width: 50%;
-  height: 50%;
-  color: white;
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image-wrapper:hover .profile-pic {
+  transform: scale(1.05);
 }
 
 .stats {
@@ -118,88 +97,55 @@ export default {
 
 .stat-item {
   background: var(--card-bg);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
 }
 
 .stat-item h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 800;
   background: var(--gradient-1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 }
 
 .stat-item p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-light);
 }
 
 .about-text h3 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.4;
+  color: var(--text);
 }
 
 .about-text p {
   color: var(--text-light);
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  font-size: 1rem;
 }
 
-.highlights {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 2rem;
-}
 
-.highlight-item {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 1rem;
-  background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.highlight-item:hover {
-  transform: translateX(5px);
-}
-
-.highlight-item svg {
-  width: 24px;
-  height: 24px;
-  color: var(--primary);
-  flex-shrink: 0;
-}
-
-.highlight-item span {
-  font-weight: 500;
-  color: var(--text);
-  font-size: 0.95rem;
-}
 
 @media (max-width: 968px) {
   .about-content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .about-image {
     position: static;
-  }
-
-  .highlights {
-    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
   }
 }
 </style>

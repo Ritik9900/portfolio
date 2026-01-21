@@ -55,7 +55,7 @@ export default {
       currentPdfTitle: '',
       documents: {
         resume: {
-          url: '/documents/Ritik_Ranjan_IIT-M.pdf#toolbar=0&navpanes=0&scrollbar=0',
+          url: `${import.meta.env.BASE_URL}documents/Ritik_Ranjan_IIT-M.pdf#toolbar=0&navpanes=0&scrollbar=0`,
           title: 'Resume / CV'
         }
       }

@@ -139,19 +139,12 @@ export default {
 <style scoped>
 .services {
   background: var(--bg);
+  padding: 3rem 0; /* Compact padding */
 }
 
 .services-header {
   text-align: center;
-  margin-bottom: 3rem;
-}
-
-.services-subtitle {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 .availability-badge {
@@ -159,8 +152,8 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  margin-bottom: 4rem;
-  padding: 0.6rem 1.5rem;
+  margin-bottom: 3rem;
+  padding: 0.5rem 1.2rem;
   background: var(--bg-secondary);
   border-radius: 50px;
   width: fit-content;
@@ -169,36 +162,24 @@ export default {
   border: 1px solid var(--border);
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #10b981; /* Green for available */
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-}
-
-.availability-badge span {
-  font-weight: 500;
-  color: var(--text);
-  font-size: 0.9rem;
-}
-
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
 }
 
 .service-card {
   background: var(--card-bg);
   border-radius: 12px;
-  padding: 2.5rem;
+  padding: 2rem;
   border: 1px solid var(--border);
   transition: all 0.3s ease;
   position: relative;
   display: flex;
   flex-direction: column;
+  aspect-ratio: 1; /* Enforce square shape */
+  justify-content: space-between;
 }
 
 .service-card:hover {
@@ -209,14 +190,15 @@ export default {
 
 .featured-badge {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  right: 1rem;
   background: var(--primary);
   color: white;
   padding: 0.25rem 0.8rem;
   border-radius: 100px;
   font-size: 0.75rem;
   font-weight: 600;
+  z-index: 2;
 }
 
 .service-card h3 {
