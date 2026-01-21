@@ -2,27 +2,24 @@
   <section class="experience section" id="experience">
     <div class="container">
       <h2 class="section-title">Work Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item" v-for="(job, index) in jobs" :key="index">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="job-header">
-              <div>
-                <h3>{{ job.title }}</h3>
-                <h4>{{ job.company }}</h4>
-              </div>
-              <span class="duration">{{ job.duration }}</span>
+      <div class="experience-list">
+        <div class="job-item" v-for="(job, index) in jobs" :key="index">
+          <div class="job-header">
+            <div class="job-main-info">
+              <h3>{{ job.title }}</h3>
+              <h4>{{ job.company }}</h4>
             </div>
-            <ul class="responsibilities">
-              <li v-for="(resp, idx) in job.responsibilities" :key="idx">
-                {{ resp }}
-              </li>
-            </ul>
-            <div class="technologies">
-              <span class="tech-tag" v-for="tech in job.technologies" :key="tech">
-                {{ tech }}
-              </span>
-            </div>
+            <span class="duration">{{ job.duration }}</span>
+          </div>
+          <ul class="responsibilities">
+            <li v-for="(resp, idx) in job.responsibilities" :key="idx">
+              {{ resp }}
+            </li>
+          </ul>
+          <div class="technologies">
+            <span class="tech-tag" v-for="tech in job.technologies" :key="tech">
+              {{ tech }}
+            </span>
           </div>
         </div>
       </div>
@@ -86,86 +83,57 @@ export default {
   background: var(--bg-secondary);
 }
 
-.timeline {
-  max-width: 900px;
+.experience-list {
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--gradient-1);
-}
-
-.timeline-item {
-  position: relative;
-  padding-left: 60px;
-  padding-bottom: 3rem;
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: 10px;
-  top: 8px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--gradient-1);
-  border: 4px solid var(--bg-secondary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
-  z-index: 1;
-}
-
-.timeline-content {
+.job-item {
   background: var(--card-bg);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.timeline-content:hover {
-  transform: translateX(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+.job-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary);
 }
 
 .job-header {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   margin-bottom: 1.5rem;
-  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.job-header h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.3rem;
-}
-
-.job-header h4 {
-  font-size: 1.1rem;
+.job-main-info h3 {
+  font-size: 1.3rem;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--text);
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.job-main-info h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
 }
 
 .duration {
-  padding: 0.4rem 1rem;
-  background: var(--bg-secondary);
-  border-radius: 20px;
   font-size: 0.9rem;
+  color: var(--primary);
   font-weight: 500;
-  color: var(--text-light);
   white-space: nowrap;
 }
 
@@ -176,19 +144,22 @@ export default {
 
 .responsibilities li {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 1.2rem;
   margin-bottom: 0.8rem;
-  color: var(--text-light);
+  color: var(--text);
   line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 .responsibilities li::before {
-  content: '▹';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--primary);
-  font-size: 1.2rem;
-  font-weight: bold;
+  top: 0.6rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-light);
 }
 
 .technologies {
@@ -198,34 +169,29 @@ export default {
 }
 
 .tech-tag {
-  padding: 0.4rem 0.9rem;
-  background: var(--bg-secondary);
-  border-radius: 6px;
-  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  background: var(--bg);
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--primary);
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: var(--primary);
+  color: white;
 }
 
 @media (max-width: 768px) {
-  .timeline::before {
-    left: 10px;
-  }
-
-  .timeline-item {
-    padding-left: 45px;
-  }
-
-  .timeline-dot {
-    left: 0;
-  }
-
   .job-header {
     flex-direction: column;
+    gap: 0.5rem;
   }
-
-  .duration {
-    align-self: flex-start;
+  
+  .job-item {
+    padding: 1.5rem;
   }
 }
 </style>

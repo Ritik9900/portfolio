@@ -4,13 +4,15 @@
       <h2 class="section-title">Education</h2>
       <div class="education-grid">
         <div class="education-card" v-for="edu in education" :key="edu.degree">
-          <div class="edu-icon" :style="{ background: edu.gradient }">
-            {{ edu.icon }}
-          </div>
           <div class="edu-content">
-            <h3>{{ edu.degree }}</h3>
-            <h4>{{ edu.school }}</h4>
-            <p class="duration">{{ edu.duration }}</p>
+            <div class="edu-header">
+              <div>
+                <h3>{{ edu.degree }}</h3>
+                <h4>{{ edu.school }}</h4>
+              </div>
+              <span class="duration">{{ edu.duration }}</span>
+            </div>
+            
             <div class="minors" v-if="edu.minors">
               <p class="minors-title">Minors:</p>
               <div class="minors-list">
@@ -19,11 +21,13 @@
                 </span>
               </div>
             </div>
+
             <ul class="highlights" v-if="edu.highlights">
               <li v-for="highlight in edu.highlights" :key="highlight">
                 {{ highlight }}
               </li>
             </ul>
+
             <div class="coursework" v-if="edu.coursework">
               <p class="coursework-title">Key Coursework:</p>
               <div class="coursework-tags">
@@ -37,11 +41,10 @@
       </div>
 
       <div class="certifications">
-        <h3>Certifications & Achievements</h3>
+        <h3 class="cert-title">Certifications & Achievements</h3>
         <div class="cert-grid">
           <div class="cert-item" v-for="cert in certifications" :key="cert.name">
-            <div class="cert-icon">{{ cert.icon }}</div>
-            <div>
+            <div class="cert-content">
               <h4>{{ cert.name }}</h4>
               <p>{{ cert.issuer }}</p>
             </div>
@@ -62,8 +65,6 @@ export default {
           degree: 'Bachelor of Science in Data Science',
           school: 'Indian Institute of Technology Madras (IIT-M)',
           duration: '2021 - 2025',
-          icon: '🎓',
-          gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           minors: ['Minor in Economics & Finance', 'Minor in Cloud Computing'],
           highlights: [
             'GPA: 8.0/10.0',
@@ -72,38 +73,17 @@ export default {
             'Published research paper on deep learning applications'
           ],
           coursework: [
-            'Machine Learning',
-            'Deep Learning',
-            'Neural Networks',
-            'Statistical Analysis',
-            'Data Mining',
-            'Computer Vision',
-            'Natural Language Processing',
-            'Big Data Analytics'
+            'Machine Learning', 'Deep Learning', 'Neural Networks',
+            'Statistical Analysis', 'Data Mining', 'Computer Vision',
+            'Natural Language Processing', 'Big Data Analytics'
           ]
         }
       ],
       certifications: [
-        {
-          name: 'TensorFlow Developer Certificate',
-          issuer: 'Google',
-          icon: '📜'
-        },
-        {
-          name: 'AWS Machine Learning Specialty',
-          issuer: 'Amazon Web Services',
-          icon: '☁️'
-        },
-        {
-          name: 'Deep Learning Specialization',
-          issuer: 'DeepLearning.AI',
-          icon: '🧠'
-        },
-        {
-          name: 'Vue.js Certification',
-          issuer: 'Vue School',
-          icon: '✅'
-        }
+        { name: 'TensorFlow Developer Certificate', issuer: 'Google' },
+        { name: 'AWS Machine Learning Specialty', issuer: 'Amazon Web Services' },
+        { name: 'Deep Learning Specialization', issuer: 'DeepLearning.AI' },
+        { name: 'Vue.js Certification', issuer: 'Vue School' }
       ]
     }
   }
@@ -116,60 +96,55 @@ export default {
 }
 
 .education-grid {
-  max-width: 900px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto 4rem;
 }
 
 .education-card {
   background: var(--card-bg);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 2.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  display: flex;
-  gap: 2rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   margin-bottom: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .education-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary);
 }
 
-.edu-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 16px;
+.edu-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.edu-content {
-  flex: 1;
-}
-
-.edu-content h3 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.5rem;
-}
-
-.edu-content h4 {
-  font-size: 1.2rem;
+.edu-header h3 {
+  font-size: 1.5rem;
   font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 0.5rem;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.01em;
+}
+
+.edu-header h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-light);
 }
 
 .duration {
-  color: var(--text-light);
+  font-size: 0.95rem;
+  color: var(--primary);
   font-weight: 500;
-  margin-bottom: 1.5rem;
+  white-space: nowrap;
 }
 
 .minors {
@@ -180,6 +155,7 @@ export default {
   font-weight: 600;
   color: var(--text);
   margin-bottom: 0.8rem;
+  font-size: 0.95rem;
 }
 
 .minors-list {
@@ -189,43 +165,45 @@ export default {
 }
 
 .minor-tag {
-  padding: 0.5rem 1.2rem;
-  background: var(--gradient-1);
-  color: white;
-  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  background: var(--bg-secondary); /* Clean background instead of gradient */
+  color: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
   font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+  font-weight: 500;
 }
 
 .highlights {
   list-style: none;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .highlights li {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 1.2rem;
   margin-bottom: 0.6rem;
-  color: var(--text-light);
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .highlights li::before {
-  content: '✓';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.coursework {
-  margin-top: 1.5rem;
+  top: 0.6rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-light);
 }
 
 .coursework-title {
   font-weight: 600;
   color: var(--text);
   margin-bottom: 0.8rem;
+  font-size: 0.95rem;
 }
 
 .coursework-tags {
@@ -235,25 +213,32 @@ export default {
 }
 
 .coursework-tags span {
-  padding: 0.4rem 0.9rem;
-  background: var(--bg-secondary);
+  padding: 0.3rem 0.8rem;
+  background: var(--bg);
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text);
-  border: 1px solid var(--border);
+  color: var(--text-light);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.coursework-tags span:hover {
+  color: var(--primary);
+  background: var(--bg-secondary);
 }
 
 .certifications {
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
 }
 
-.certifications h3 {
-  font-size: 2rem;
+.cert-title {
+  font-size: 1.8rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  color: var(--text);
 }
 
 .cert-grid {
@@ -266,34 +251,21 @@ export default {
   background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
 }
 
 .cert-item:hover {
   transform: translateY(-3px);
-}
-
-.cert-icon {
-  width: 50px;
-  height: 50px;
-  background: var(--bg-secondary);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
+  border-color: var(--primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .cert-item h4 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
 .cert-item p {
@@ -302,19 +274,17 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .education-card {
+  .edu-header {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.5rem;
   }
-
-  .edu-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
+  
+  .duration {
+    align-self: flex-start;
   }
-
-  .cert-grid {
-    grid-template-columns: 1fr;
+  
+  .education-card {
+    padding: 1.5rem;
   }
 }
 </style>

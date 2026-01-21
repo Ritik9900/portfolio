@@ -59,26 +59,28 @@
 
         <div class="contact-form-wrapper">
           <form class="contact-form" @submit.prevent="handleSubmit">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                v-model="formData.name" 
-                placeholder="Your Name"
-                required
-              />
-            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  v-model="formData.name" 
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
 
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                v-model="formData.email" 
-                placeholder="you@example.com"
-                required
-              />
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  v-model="formData.email" 
+                  placeholder="email@example.com"
+                  required
+                />
+              </div>
             </div>
 
             <div class="form-group">
@@ -87,7 +89,7 @@
                 type="text" 
                 id="subject" 
                 v-model="formData.subject" 
-                placeholder="What's this about?"
+                placeholder="Topic"
                 required
               />
             </div>
@@ -97,14 +99,14 @@
               <textarea 
                 id="message" 
                 v-model="formData.message" 
-                rows="5"
-                placeholder="Tell me about your project or opportunity..."
+                rows="3"
+                placeholder="Your message..."
                 required
               ></textarea>
             </div>
 
             <button type="submit" class="submit-btn" :disabled="isSubmitting">
-              <span v-if="!isSubmitting">Send Message</span>
+              <span v-if="!isSubmitting">Send</span>
               <span v-else>Sending...</span>
               <svg v-if="!isSubmitting" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -115,22 +117,10 @@
               </svg>
             </button>
 
-            <!-- Success Message -->
-            <div v-if="submitStatus === 'success'" class="status-message success-message">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Message sent successfully! I'll get back to you soon.</span>
-            </div>
-
-            <!-- Error Message -->
-            <div v-if="submitStatus === 'error'" class="status-message error-message">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="15" y1="9" x2="9" y2="15"></line>
-                <line x1="9" y1="9" x2="15" y2="15"></line>
-              </svg>
-              <span>Failed to send message. Please try again or email me directly.</span>
+            <!-- Status Messages -->
+            <div v-if="submitStatus" :class="['status-message', submitStatus + '-message']">
+              <span v-if="submitStatus === 'success'">Message sent!</span>
+              <span v-else>Failed to send.</span>
             </div>
           </form>
         </div>
@@ -151,8 +141,7 @@ export default {
         message: ''
       },
       isSubmitting: false,
-      submitStatus: null, // 'success', 'error', or null
-      // Get your free access key from https://web3forms.com
+      submitStatus: null,
       accessKey: 'YOUR_WEB3FORMS_ACCESS_KEY'
     }
   },
@@ -170,12 +159,8 @@ export default {
           },
           body: JSON.stringify({
             access_key: this.accessKey,
-            name: this.formData.name,
-            email: this.formData.email,
-            subject: this.formData.subject,
-            message: this.formData.message,
-            from_name: 'Portfolio Contact Form',
-            to_name: 'Portfolio Owner'
+            ...this.formData,
+            from_name: 'Portfolio Contact Form'
           })
         })
 
@@ -183,17 +168,8 @@ export default {
 
         if (result.success) {
           this.submitStatus = 'success'
-          // Reset form
-          this.formData = {
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-          }
-          // Clear success message after 5 seconds
-          setTimeout(() => {
-            this.submitStatus = null
-          }, 5000)
+          this.formData = { name: '', email: '', subject: '', message: '' }
+          setTimeout(() => { this.submitStatus = null }, 5000)
         } else {
           this.submitStatus = 'error'
         }
@@ -211,61 +187,62 @@ export default {
 <style scoped>
 .contact {
   background: var(--bg);
+  padding: 4rem 0; /* Reduced vertical padding */
 }
 
 .contact-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  max-width: 1100px;
+  gap: 3rem; /* Reduced gap */
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .contact-info h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   color: var(--text);
 }
 
 .contact-info > p {
   color: var(--text-light);
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-size: 1rem;
 }
 
 .contact-methods {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
 .contact-method {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  padding: 1.2rem;
+  gap: 1rem;
+  padding: 0.8rem 1rem; /* Compact padding */
   background: var(--bg-secondary);
-  border-radius: 12px;
+  border-radius: 10px;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 .contact-method:hover {
   background: var(--card-bg);
   border-color: var(--primary);
   transform: translateX(5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .method-icon {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: var(--card-bg);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,19 +251,19 @@ export default {
 }
 
 .contact-method svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .contact-method h4 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
 }
 
 .contact-method p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-light);
 }
 
@@ -294,15 +271,15 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 1rem;
+  padding: 0.8rem;
   background: rgba(16, 185, 129, 0.1);
-  border-radius: 10px;
-  margin-top: 2rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
 }
 
 .status-indicator {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #10b981;
   border-radius: 50%;
   animation: pulse 2s infinite;
@@ -311,40 +288,47 @@ export default {
 .availability span {
   color: #065f46;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
+/* Compact Form */
 .contact-form-wrapper {
   background: var(--bg-secondary);
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem; /* Tighter gap */
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .form-group label {
   font-weight: 600;
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group textarea {
-  padding: 0.9rem 1.2rem;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  font-size: 1rem;
+  padding: 0.7rem 1rem; /* Compact padding */
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
   font-family: inherit;
   background: var(--card-bg);
   color: var(--text);
@@ -355,103 +339,69 @@ export default {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 100px; /* Reduced height */
 }
 
 .submit-btn {
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.5rem;
   background: var(--gradient-1);
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-}
-
-.submit-btn svg {
-  width: 20px;
-  height: 20px;
+  gap: 0.5rem;
+  align-self: flex-start; /* Don't stretch full width */
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(67, 206, 162, 0.4);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
-.submit-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.spinner {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submit-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .status-message {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 1rem;
-  border-radius: 10px;
-  margin-top: 1rem;
-  animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .success-message {
   background: #d1fae5;
   color: #065f46;
-  border: 2px solid #10b981;
 }
 
 .error-message {
   background: #fee2e2;
   color: #991b1b;
-  border: 2px solid #ef4444;
 }
 
-.status-message svg {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
-@media (max-width: 968px) {
+@media (max-width: 768px) {
   .contact-content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .submit-btn {
+    width: 100%;
   }
 }
 </style>
-

@@ -4,9 +4,6 @@
       <h2 class="section-title">Skills & Technologies</h2>
       <div class="skills-grid">
         <div class="skill-category" v-for="category in skillCategories" :key="category.title">
-          <div class="category-icon" :style="{ background: category.gradient }">
-            <span v-html="category.icon"></span>
-          </div>
           <h3>{{ category.title }}</h3>
           <div class="skills-list">
             <span class="skill-tag" v-for="skill in category.skills" :key="skill">
@@ -27,86 +24,43 @@ export default {
       skillCategories: [
         {
           title: 'AI/ML & Deep Learning',
-          gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          icon: '🤖',
           skills: [
-            'TensorFlow',
-            'PyTorch',
-            'Keras',
-            'Scikit-learn',
-            'Neural Networks',
-            'Computer Vision',
-            'NLP',
-            'Model Deployment'
+            'TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn',
+            'Neural Networks', 'Computer Vision', 'NLP', 'Model Deployment'
           ]
         },
         {
           title: 'Programming Languages',
-          gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-          icon: '💻',
           skills: [
-            'Python',
-            'JavaScript',
-            'C#',
-            'SQL',
-            'TypeScript',
-            'R'
+            'Python', 'JavaScript', 'C#', 'SQL', 'TypeScript', 'R'
           ]
         },
         {
           title: 'Frontend Development',
-          gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-          icon: '🎨',
           skills: [
-            'Vue.js',
-            'HTML5',
-            'CSS3',
-            'Responsive Design',
-            'JavaScript ES6+',
-            'Vite',
-            'UI/UX Design'
+            'Vue.js', 'HTML5', 'CSS3', 'Responsive Design',
+            'JavaScript ES6+', 'Vite', 'UI/UX Design'
           ]
         },
         {
           title: 'Backend & Databases',
-          gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-          icon: '⚙️',
           skills: [
-            'Node.js',
-            'Unity Backend',
-            'REST APIs',
-            'MongoDB',
-            'PostgreSQL',
-            'Firebase',
-            'Docker'
+            'Node.js', 'Unity Backend', 'REST APIs',
+            'MongoDB', 'PostgreSQL', 'Firebase', 'Docker'
           ]
         },
         {
           title: 'Data Science',
-          gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-          icon: '📊',
           skills: [
-            'Pandas',
-            'NumPy',
-            'Matplotlib',
-            'Seaborn',
-            'Jupyter',
-            'Statistical Analysis',
-            'Data Visualization'
+            'Pandas', 'NumPy', 'Matplotlib', 'Seaborn',
+            'Jupyter', 'Statistical Analysis', 'Data Visualization'
           ]
         },
         {
           title: 'Tools & Platforms',
-          gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
-          icon: '🛠️',
           skills: [
-            'Git & GitHub',
-            'VS Code',
-            'Unity',
-            'AWS',
-            'Google Cloud',
-            'Linux',
-            'Agile/Scrum'
+            'Git & GitHub', 'VS Code', 'Unity', 'AWS',
+            'Google Cloud', 'Linux', 'Agile/Scrum'
           ]
         }
       ]
@@ -122,72 +76,77 @@ export default {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
 .skill-category {
-  background: var(--bg-secondary);
+  background: var(--card-bg);
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 2px solid transparent;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary);
+  opacity: 0.7;
 }
 
 .skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   border-color: var(--primary);
 }
 
-.category-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
 .skill-category h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
   color: var(--text);
+  letter-spacing: -0.02em;
 }
 
 .skills-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.8rem;
 }
 
 .skill-tag {
-  padding: 0.5rem 1rem;
-  background: var(--card-bg);
-  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  background: var(--bg-secondary);
+  border-radius: 6px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--text);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  cursor: default;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .skill-tag:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: var(--primary);
-  color: white;
+  background: var(--bg);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .skill-category {
+    padding: 1.5rem;
   }
 }
 </style>

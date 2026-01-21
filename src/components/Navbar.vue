@@ -35,7 +35,7 @@
 
         <ul class="nav-links" :class="{ 'mobile-open': mobileMenuOpen }">
           <li><a href="#about" @click="closeMobileMenu">About</a></li>
-          <li><a href="#skills" @click="closeMobileMenu">Skills</a></li>
+
           <li><a href="#projects" @click="closeMobileMenu">Projects</a></li>
           <li><a href="#services" @click="closeMobileMenu">Hire Me</a></li>
           <li><a href="#resume" @click="closeMobileMenu">Resume</a></li>
