@@ -121,7 +121,7 @@ export default {
 }
 
 .education-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 2.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -263,7 +263,7 @@ export default {
 }
 
 .cert-item {
-  background: white;
+  background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 12px;
   display: flex;

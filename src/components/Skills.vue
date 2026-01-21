@@ -117,7 +117,7 @@ export default {
 
 <style scoped>
 .skills {
-  background: white;
+  background: var(--bg);
 }
 
 .skills-grid {
@@ -168,7 +168,7 @@ export default {
 
 .skill-tag {
   padding: 0.5rem 1rem;
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 500;

@@ -5,7 +5,9 @@
       <div class="projects-grid">
         <div class="project-card" v-for="project in projects" :key="project.title">
           <div class="project-image" :style="{ background: project.gradient }">
-            <span class="project-emoji">{{ project.icon }}</span>
+            <div class="emoji-glass">
+              <span class="project-emoji">{{ project.icon }}</span>
+            </div>
           </div>
           <div class="project-content">
             <div class="project-header">
@@ -45,7 +47,7 @@ export default {
         {
           title: 'Image Classification System',
           icon: '🖼️',
-          gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          gradient: 'linear-gradient(135deg, #1A2980 0%, #26D0CE 100%)',
           description: 'Deep learning model for multi-class image classification using CNNs. Achieved 95%+ accuracy on custom dataset with data augmentation and transfer learning.',
           tags: ['PyTorch', 'CNN', 'Transfer Learning', 'Flask', 'Docker'],
           github: 'https://github.com/yourusername/project',
@@ -54,16 +56,16 @@ export default {
         {
           title: 'NLP Sentiment Analysis',
           icon: '💬',
-          gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+          gradient: 'linear-gradient(135deg, #614385 0%, #516395 100%)',
           description: 'Advanced sentiment analysis system using transformers and BERT. Processes customer reviews and provides detailed sentiment insights with visualization.',
           tags: ['Python', 'BERT', 'NLP', 'Transformers', 'FastAPI'],
           github: 'https://github.com/yourusername/project',
           demo: null
         },
         {
-          title: 'Unity Multiplayer Game Backend',
+          title: 'Unity Multiplayer Backend',
           icon: '🎮',
-          gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+          gradient: 'linear-gradient(135deg, #FF512F 0%, #DD2476 100%)',
           description: 'Scalable backend system for Unity multiplayer game with real-time synchronization, player matchmaking, and leaderboard functionality.',
           tags: ['Node.js', 'Socket.io', 'MongoDB', 'Unity', 'C#', 'Redis'],
           github: 'https://github.com/yourusername/project',
@@ -72,25 +74,25 @@ export default {
         {
           title: 'Real-Time Object Detection',
           icon: '📹',
-          gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+          gradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
           description: 'Real-time object detection application using YOLO and OpenCV. Capable of detecting multiple objects with bounding boxes and confidence scores.',
           tags: ['Python', 'YOLO', 'OpenCV', 'TensorFlow', 'Streamlit'],
           github: 'https://github.com/yourusername/project',
           demo: 'https://demo-link.com'
         },
         {
-          title: 'Data Visualization Dashboard',
+          title: 'Data Analytics Dashboard',
           icon: '📊',
-          gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+          gradient: 'linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%)',
           description: 'Interactive dashboard for data analysis and visualization using Vue.js. Features include real-time charts, filtering, and export capabilities.',
           tags: ['Vue.js', 'D3.js', 'Python', 'Pandas', 'API'],
           github: 'https://github.com/yourusername/project',
           demo: 'https://demo-link.com'
         },
         {
-          title: 'Recommendation System',
+          title: 'AI Recommendation Engine',
           icon: '🎯',
-          gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+          gradient: 'linear-gradient(135deg, #CB356B 0%, #BD3F32 100%)',
           description: 'Machine learning-based recommendation engine using collaborative filtering and content-based approaches. Deployed with FastAPI for production use.',
           tags: ['Python', 'Scikit-learn', 'FastAPI', 'SQL', 'AWS'],
           github: 'https://github.com/yourusername/project',
@@ -104,32 +106,34 @@ export default {
 
 <style scoped>
 .projects {
-  background: white;
+  background: var(--bg);
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .project-card {
-  background: white;
-  border-radius: 16px;
+  background: var(--card-bg);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 2px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: var(--primary);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .project-image {
-  height: 180px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,13 +141,37 @@ export default {
   overflow: hidden;
 }
 
+/* Glass effect for emoji container */
+.emoji-glass {
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .emoji-glass {
+  transform: scale(1.1) rotate(5deg);
+}
+
 .project-emoji {
-  font-size: 4rem;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+  font-size: 3.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .project-content {
-  padding: 1.8rem;
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-header {
@@ -154,10 +182,11 @@ export default {
 }
 
 .project-header h3 {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text);
-  flex: 1;
+  margin-right: 1rem;
+  line-height: 1.3;
 }
 
 .project-links {
@@ -166,21 +195,22 @@ export default {
 }
 
 .project-links a {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: var(--bg-secondary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f1f5f9;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text);
+  color: #64748b;
   transition: all 0.3s ease;
 }
 
 .project-links a:hover {
   background: var(--primary);
   color: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px) rotate(8deg);
+  box-shadow: 0 5px 15px rgba(67, 206, 162, 0.3);
 }
 
 .project-content p {
@@ -188,27 +218,35 @@ export default {
   line-height: 1.7;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
+  flex-grow: 1;
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
+  margin-top: auto;
 }
 
 .tag {
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.85rem;
   background: var(--bg-secondary);
-  border-radius: 6px;
+  border-radius: 100px;
   font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--primary);
-  border: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--primary-dark);
+  transition: all 0.2s ease;
+}
+
+.project-card:hover .tag {
+  background: var(--primary);
+  color: white;
 }
 
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 </style>

@@ -5,20 +5,43 @@
 }
 
 :root {
-  --primary: #43cea2;
-  --primary-dark: #2ba886;
-  --secondary: #185a9d;
-  --accent: #5fb3e5;
-  --text: #1e293b;
-  --text-light: #64748b;
+  --primary: #0071e3;
+  --primary-dark: #0077ed;
+  --secondary: #5ac8fa;
+  --accent: #4cd964;
+  --text: #1d1d1f;
+  --text-light: #86868b;
   --bg: #ffffff;
-  --bg-secondary: #e0f7f4;
-  --bg-dark: #0f2845;
-  --border: #b8e7dd;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --gradient-1: linear-gradient(135deg, #43cea2 0%, #2ba886 50%, #185a9d 100%);
-  --gradient-2: linear-gradient(135deg, #5fb3e5 0%, #185a9d 100%);
-  --gradient-3: linear-gradient(135deg, #43cea2 0%, #5fb3e5 100%);
+  --bg-secondary: #fbfbfd;
+  --bg-dark: #000000;
+  --border: #d2d2d7;
+  --nav-bg: rgba(255, 255, 255, 0.7);
+  --shadow: rgba(0, 0, 0, 0.08);
+  /* Lighter, airy blue gradient (iPad Air style) */
+  --gradient-1: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%);
+  --gradient-2: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  --gradient-3: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  --card-bg: #ffffff;
+}
+
+body.dark-mode {
+  --primary: #0a84ff;
+  --primary-dark: #60a5fa;
+  --secondary: #5ac8fa;
+  --accent: #30d158;
+  --text: #f5f5f7;
+  --text-light: #a1a1a6;
+  --bg: #000000;
+  --bg-secondary: #161617;
+  --bg-dark: #000000;
+  --border: #424245;
+  --nav-bg: rgba(22, 22, 23, 0.7);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --card-bg: #1c1c1e;
+  /* Much brighter gradient for dark mode */
+  --gradient-1: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  --gradient-2: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  --gradient-3: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 
 body {
@@ -38,7 +61,8 @@ body {
   min-height: 100vh;
 }
 
-code, pre {
+code,
+pre {
   font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
 
@@ -73,9 +97,10 @@ html {
 
 /* Utility Classes */
 .container {
-  max-width: 1200px;
+  width: 90%;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 .section {
@@ -110,6 +135,7 @@ html {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -120,6 +146,7 @@ html {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -130,6 +157,7 @@ html {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -141,6 +169,7 @@ html {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -148,18 +177,24 @@ html {
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -195,4 +230,3 @@ html {
     font-size: 2rem;
   }
 }
-

@@ -246,7 +246,7 @@ export default {
   gap: 0.8rem;
   margin-bottom: 3rem;
   padding: 1rem 2rem;
-  background: white;
+  background: var(--card-bg);
   border-radius: 50px;
   width: fit-content;
   margin-left: auto;
@@ -290,7 +290,7 @@ export default {
 }
 
 .service-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 2.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -376,7 +376,7 @@ export default {
 }
 
 .work-process {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 3rem;
   margin-bottom: 3rem;
@@ -447,7 +447,7 @@ export default {
 }
 
 .info-card {
-  background: white;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 12px;
   display: flex;

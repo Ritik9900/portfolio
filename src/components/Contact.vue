@@ -210,7 +210,7 @@ export default {
 
 <style scoped>
 .contact {
-  background: white;
+  background: var(--bg);
 }
 
 .contact-content {
@@ -255,7 +255,7 @@ export default {
 }
 
 .contact-method:hover {
-  background: white;
+  background: var(--card-bg);
   border-color: var(--primary);
   transform: translateX(5px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -264,7 +264,7 @@ export default {
 .method-icon {
   width: 50px;
   height: 50px;
-  background: white;
+  background: var(--card-bg);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -295,7 +295,7 @@ export default {
   align-items: center;
   gap: 0.8rem;
   padding: 1rem;
-  background: #d1fae5;
+  background: rgba(16, 185, 129, 0.1);
   border-radius: 10px;
   margin-top: 2rem;
 }
@@ -346,7 +346,8 @@ export default {
   border-radius: 10px;
   font-size: 1rem;
   font-family: inherit;
-  background: white;
+  background: var(--card-bg);
+  color: var(--text);
   transition: all 0.3s ease;
 }
 

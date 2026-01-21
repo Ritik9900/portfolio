@@ -126,7 +126,7 @@ export default {
 }
 
 .timeline-content {
-  background: white;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

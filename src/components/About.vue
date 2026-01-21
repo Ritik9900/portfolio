@@ -117,7 +117,7 @@ export default {
 }
 
 .stat-item {
-  background: white;
+  background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
@@ -165,7 +165,7 @@ export default {
   align-items: center;
   gap: 0.8rem;
   padding: 1rem;
-  background: white;
+  background: var(--card-bg);
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;

@@ -163,7 +163,7 @@ export default {
 
 <style scoped>
 .resume {
-  background: white;
+  background: var(--bg);
 }
 
 .documents-grid {
@@ -268,7 +268,7 @@ export default {
 .view-badge {
   display: inline-block;
   padding: 0.3rem 0.8rem;
-  background: white;
+  background: var(--bg);
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -280,7 +280,7 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: white;
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -307,7 +307,7 @@ export default {
 }
 
 .upload-instruction {
-  background: #fef3c7;
+  background: var(--bg-secondary);
   border: 2px dashed var(--primary);
   border-radius: 12px;
   padding: 1.5rem;
@@ -331,7 +331,7 @@ export default {
 }
 
 .upload-instruction code {
-  background: white;
+  background: var(--card-bg);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
   font-family: 'JetBrains Mono', monospace;
