@@ -14,6 +14,9 @@
           <h2 class="title fade-in-up" style="animation-delay: 0.2s">
             AI/ML Engineer & Full-Stack Developer
           </h2>
+          <p class="education-text fade-in-up" style="animation-delay: 0.25s">
+            IIT Madras Graduate with minors in Finance and Cloud Computing
+          </p>
           <p class="description fade-in-up" style="animation-delay: 0.3s">
             Specializing in Deep Learning, Machine Learning, and building scalable applications. 
             Passionate about creating intelligent solutions that make a difference.
@@ -21,6 +24,7 @@
           <div class="hero-buttons fade-in-up" style="animation-delay: 0.4s">
             <a href="#projects" class="btn btn-primary">View My Work</a>
             <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            <button @click="openPdf" class="btn btn-secondary">Resume</button>
           </div>
           <div class="social-links fade-in-up" style="animation-delay: 0.5s">
             <a href="https://github.com/Ritik9900" target="_blank" aria-label="GitHub">
@@ -70,12 +74,40 @@
         </div>
       </div>
     </div>
+
+    <!-- PDF Modal -->
+    <PdfModal 
+      :is-open="modalOpen" 
+      :pdf-url="currentPdfUrl" 
+      :title="currentPdfTitle"
+      @close="closeModal"
+    />
   </section>
 </template>
 
 <script>
+import PdfModal from './PdfModal.vue'
+
 export default {
-  name: 'Hero'
+  name: 'Hero',
+  components: {
+    PdfModal
+  },
+  data() {
+    return {
+      modalOpen: false,
+      currentPdfUrl: `${import.meta.env.BASE_URL}documents/Ritik_Ranjan_IIT-M.pdf#toolbar=0&navpanes=0&scrollbar=0`,
+      currentPdfTitle: 'Resume / CV'
+    }
+  },
+  methods: {
+    openPdf() {
+      this.modalOpen = true
+    },
+    closeModal() {
+      this.modalOpen = false
+    }
+  }
 }
 </script>
 
@@ -87,6 +119,23 @@ export default {
   position: relative;
   overflow: hidden;
   padding-top: 80px;
+  
+  /* Force Light Mode Theme Variables for this section */
+  --primary: #0071e3;
+  --text: #1d1d1f;
+  --text-light: #86868b;
+  background-color: #ffffff; 
+  color: #1d1d1f;
+  z-index: 0; /* Create stacking context so -1 children sit above background */
+  
+  /* Restore light mode gradients */
+  --gradient-1: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%);
+  --gradient-2: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  --gradient-3: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+
+  /* Restore light mode secondary backgrounds and borders for buttons/icons */
+  --bg-secondary: #fbfbfd;
+  --border: #d2d2d7;
 }
 
 .hero-bg {
@@ -165,6 +214,14 @@ export default {
   margin-bottom: 1.5rem;
 }
 
+.education-text {
+  font-size: 1.1rem;
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
 .description {
   font-size: 1.1rem;
   color: var(--text-light);
@@ -177,11 +234,14 @@ export default {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap; /* Allow wrapping for better mobile */
 }
 
 .btn {
   padding: 0.9rem 2rem;
   border-radius: 10px;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -210,6 +270,19 @@ export default {
   background: var(--primary);
   color: white;
   transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .social-links {

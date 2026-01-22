@@ -7,10 +7,11 @@
     <Experience />
     <Projects />
     <Services />
-    <Education />
-    <Resume />
+    <Certificates />
     <Contact />
     <Footer />
+    <CursorGlow />
+    <NeuralRain />
   </div>
 </template>
 
@@ -22,10 +23,11 @@ import About from './components/About.vue'
 import Experience from './components/Experience.vue'
 import Projects from './components/Projects.vue'
 import Services from './components/Services.vue'
-import Education from './components/Education.vue'
-import Resume from './components/Resume.vue'
+import Certificates from './components/Certificates.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
+import CursorGlow from './components/CursorGlow.vue'
+import NeuralRain from './components/NeuralRain.vue'
 
 export default {
   name: 'App',
@@ -37,10 +39,11 @@ export default {
     Experience,
     Projects,
     Services,
-    Education,
-    Resume,
+    Certificates,
     Contact,
-    Footer
+    Footer,
+    CursorGlow,
+    NeuralRain
   }
 }
 </script>

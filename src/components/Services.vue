@@ -290,23 +290,24 @@ export default {
 /* CTA */
 .cta-section {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 2rem 1.5rem; /* Reduced padding */
   background: var(--bg-secondary);
-  border-radius: 16px;
+  border-radius: 12px;
   border: 1px solid var(--border);
+  margin-top: 3rem; /* Ensure some spacing */
 }
 
 .cta-section h3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem; /* Slightly smaller */
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: var(--text);
 }
 
 .cta-section p {
   color: var(--text-light);
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
 }
 
 .cta-button {

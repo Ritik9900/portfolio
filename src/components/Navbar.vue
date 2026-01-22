@@ -6,7 +6,14 @@
           <span class="logo-text">&lt;AI/ML Engineer /&gt;</span>
         </a>
         
-        <div class="nav-actions">
+        <div class="nav-right">
+          <ul class="nav-links" :class="{ 'mobile-open': mobileMenuOpen }">
+            <li><a href="#about" @click="closeMobileMenu">About</a></li>
+            <li><a href="#projects" @click="closeMobileMenu">Projects</a></li>
+            <li><a href="#services" @click="closeMobileMenu">Hire Me</a></li>
+            <li><a href="#contact" @click="closeMobileMenu" class="contact-btn">Contact</a></li>
+          </ul>
+
           <button class="theme-toggle" @click="toggleTheme" aria-label="Toggle theme">
             <!-- Sun Icon -->
             <svg v-if="theme === 'dark'" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -32,15 +39,6 @@
             <span></span>
           </button>
         </div>
-
-        <ul class="nav-links" :class="{ 'mobile-open': mobileMenuOpen }">
-          <li><a href="#about" @click="closeMobileMenu">About</a></li>
-
-          <li><a href="#projects" @click="closeMobileMenu">Projects</a></li>
-          <li><a href="#services" @click="closeMobileMenu">Hire Me</a></li>
-          <li><a href="#resume" @click="closeMobileMenu">Resume</a></li>
-          <li><a href="#contact" @click="closeMobileMenu" class="contact-btn">Contact</a></li>
-        </ul>
       </div>
     </div>
   </nav>
@@ -131,6 +129,17 @@ export default {
 .logo {
   text-decoration: none;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .logo-text {
@@ -247,9 +256,8 @@ export default {
     display: flex;
   }
   
-  .nav-actions {
-    margin-left: auto;
-    margin-right: 1.5rem;
+  .nav-right {
+    gap: 1rem;
   }
 
   .nav-links {
