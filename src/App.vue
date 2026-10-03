@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <Navbar />
-    <Hero />
-    <About />
-
-    <Experience />
-    <Projects />
-    <Services />
-    <Certificates />
-    <Contact />
+    <header>
+      <Navbar />
+    </header>
+    <main id="main-content">
+      <Hero />
+      <About />
+      <Expertise />
+      <Experience />
+      <Projects />
+      <Education />
+      <Contact />
+    </main>
     <Footer />
-    <CursorGlow />
-    <NeuralRain />
   </div>
 </template>
 
@@ -19,15 +20,12 @@
 import Navbar from './components/Navbar.vue'
 import Hero from './components/Hero.vue'
 import About from './components/About.vue'
-
+import Expertise from './components/Expertise.vue'
 import Experience from './components/Experience.vue'
 import Projects from './components/Projects.vue'
-import Services from './components/Services.vue'
-import Certificates from './components/Certificates.vue'
+import Education from './components/Education.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
-import CursorGlow from './components/CursorGlow.vue'
-import NeuralRain from './components/NeuralRain.vue'
 
 export default {
   name: 'App',
@@ -35,15 +33,12 @@ export default {
     Navbar,
     Hero,
     About,
-
+    Expertise,
     Experience,
     Projects,
-    Services,
-    Certificates,
+    Education,
     Contact,
-    Footer,
-    CursorGlow,
-    NeuralRain
+    Footer
   }
 }
 </script>
@@ -53,4 +48,3 @@ export default {
   width: 100%;
 }
 </style>
-

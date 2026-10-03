@@ -1,84 +1,125 @@
 <template>
   <section class="hero" id="home">
-    <div class="hero-bg">
-      <div class="gradient-blob blob-1"></div>
-      <div class="gradient-blob blob-2"></div>
-      <div class="gradient-blob blob-3"></div>
-    </div>
-    
+    <div class="hero-bg"></div>
+
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
-          <p class="greeting fade-in-up">Hi, I'm</p>
-          <h1 class="name fade-in-up" style="animation-delay: 0.1s">Ritik Ranjan</h1>
-          <h2 class="title fade-in-up" style="animation-delay: 0.2s">
-            AI/ML Engineer & Full-Stack Developer
-          </h2>
-          <p class="education-text fade-in-up" style="animation-delay: 0.25s">
-            IIT Madras Graduate with minors in Finance and Cloud Computing
+          <h1 class="headline fade-in-up">
+            I build production RAG systems and the observability that keeps them honest.
+          </h1>
+          <p class="sub-headline fade-in-up" style="animation-delay: 0.1s">
+            GenAI/ML Engineer · IIT Madras (BS, Data Science) · Currently engineering a 7-microservice
+            enterprise retrieval platform at Ascendion for Charter Communications.
           </p>
-          <p class="description fade-in-up" style="animation-delay: 0.3s">
-            Specializing in Deep Learning, Machine Learning, and building scalable applications. 
-            Passionate about creating intelligent solutions that make a difference.
+          <p class="summary fade-in-up" style="animation-delay: 0.2s">
+            I design and ship retrieval-augmented generation systems end to end — hybrid search
+            (dense + BM25 + Reciprocal Rank Fusion), cross-encoder reranking, stateful LangGraph
+            ingestion pipelines, and distributed tracing with per-query LLM cost attribution.
+            My work runs in production on AWS (ECS Fargate, RDS, ElastiCache) behind FastAPI
+            services serving 500+ concurrent users at 99.9% availability.
           </p>
-          <div class="hero-buttons fade-in-up" style="animation-delay: 0.4s">
-            <a href="#projects" class="btn btn-primary">View My Work</a>
-            <a href="#contact" class="btn btn-outline">Get In Touch</a>
-            <button @click="openPdf" class="btn btn-secondary">Resume</button>
+          <div class="hero-ctas fade-in-up" style="animation-delay: 0.3s">
+            <a href="#projects" class="btn btn-primary">Read the RAG case study →</a>
+            <button @click="openPdf" class="btn btn-secondary">Resume (PDF)</button>
           </div>
-          <div class="social-links fade-in-up" style="animation-delay: 0.5s">
-            <a href="https://github.com/Ritik9900" target="_blank" aria-label="GitHub">
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <div class="hero-links fade-in-up" style="animation-delay: 0.4s">
+            <a href="https://github.com/Ritik9900" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
               </svg>
             </a>
-            <a href="https://www.linkedin.com/in/ritik-ranjan9900/" target="_blank" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+            <a href="https://www.linkedin.com/in/ritik-ranjan9900/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                 <rect x="2" y="9" width="4" height="12"></rect>
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
+            <a href="https://www.kaggle.com/ritik9929" target="_blank" rel="noopener" aria-label="Kaggle">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.281.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.075.312z"/>
+              </svg>
+            </a>
             <a href="mailto:ritik.ranjan9900@gmail.com" aria-label="Email">
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+              <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
             </a>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="code-window">
-            <div class="window-header">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
+
+        <!-- RAG Architecture Diagram -->
+        <div class="hero-visual fade-in" style="animation-delay: 0.3s">
+          <div class="arch-diagram">
+            <div class="arch-header">
+              <span class="arch-label">Enterprise RAG Platform</span>
+              <span class="arch-metric mono">68% → 91% precision</span>
             </div>
-            <div class="code-content">
-              <pre><code><span class="keyword">class</span> <span class="class-name">AIEngineer</span>:
-    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>):
-        <span class="keyword">self</span>.name = <span class="string">"Ritik Ranjan"</span>
-        <span class="keyword">self</span>.role = <span class="string">"AI/ML Engineer"</span>
-        <span class="keyword">self</span>.experience = <span class="number">1</span>
-        <span class="keyword">self</span>.skills = [
-            <span class="string">"Deep Learning"</span>,
-            <span class="string">"Machine Learning"</span>,
-            <span class="string">"DevOps/MLOps"</span>,
-            <span class="string">"Backend"</span>
-        ]
-    
-    <span class="keyword">def</span> <span class="function">build_future</span>(<span class="keyword">self</span>):
-        <span class="keyword">return</span> <span class="string">"AI Solutions"</span></code></pre>
+            <div class="arch-pipeline">
+              <div class="arch-node">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <span class="node-label">Ingestion</span>
+                <span class="node-detail mono">LangGraph · 14 nodes</span>
+              </div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <span class="node-label">Hybrid Search</span>
+                <span class="node-detail mono">BM25 + pgvector + RRF</span>
+              </div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <span class="node-label">Rerank</span>
+                <span class="node-detail mono">Cross-encoder</span>
+              </div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <span class="node-label">Synthesis</span>
+                <span class="node-detail mono">GPT-4o</span>
+              </div>
+            </div>
+            <div class="arch-footer">
+              <span class="arch-tag">Langfuse tracing</span>
+              <span class="arch-tag">4 services instrumented</span>
+              <span class="arch-tag">per-query cost attribution</span>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Proof Metrics Row -->
+      <div class="proof-row fade-in-up" style="animation-delay: 0.5s">
+        <a href="#projects" class="proof-tile">
+          <span class="proof-value mono">~91%</span>
+          <span class="proof-label">Retrieval precision</span>
+        </a>
+        <a href="#experience" class="proof-tile">
+          <span class="proof-value mono">500+</span>
+          <span class="proof-label">Concurrent users @ 99.9%</span>
+        </a>
+        <a href="#projects" class="proof-tile">
+          <span class="proof-value mono">Top 4.5%</span>
+          <span class="proof-label">Kaggle · IndicTTS</span>
+        </a>
+      </div>
     </div>
 
     <!-- PDF Modal -->
-    <PdfModal 
-      :is-open="modalOpen" 
-      :pdf-url="currentPdfUrl" 
+    <PdfModal
+      :is-open="modalOpen"
+      :pdf-url="currentPdfUrl"
       :title="currentPdfTitle"
       @close="closeModal"
     />
@@ -115,71 +156,27 @@ export default {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
-  overflow: hidden;
   padding-top: 80px;
-  
-  /* Force Light Mode Theme Variables for this section */
-  --primary: #0071e3;
-  --text: #1d1d1f;
-  --text-light: #86868b;
-  background-color: #ffffff; 
-  color: #1d1d1f;
-  z-index: 0; /* Create stacking context so -1 children sit above background */
-  
-  /* Restore light mode gradients */
-  --gradient-1: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%);
-  --gradient-2: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
-  --gradient-3: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-
-  /* Restore light mode secondary backgrounds and borders for buttons/icons */
-  --bg-secondary: #fbfbfd;
-  --border: #d2d2d7;
+  padding-bottom: 2rem;
+  background: var(--bg);
 }
 
 .hero-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  overflow: hidden;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, var(--accent-subtle), transparent),
+    radial-gradient(ellipse 40% 40% at 80% 70%, rgba(37, 99, 235, 0.04), transparent);
+  pointer-events: none;
 }
 
-.gradient-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.3;
-  animation: float 8s ease-in-out infinite;
-}
-
-.blob-1 {
-  width: 400px;
-  height: 400px;
-  background: var(--gradient-1);
-  top: -100px;
-  left: -100px;
-}
-
-.blob-2 {
-  width: 350px;
-  height: 350px;
-  background: var(--gradient-2);
-  bottom: -100px;
-  right: -100px;
-  animation-delay: -2s;
-}
-
-.blob-3 {
-  width: 300px;
-  height: 300px;
-  background: var(--gradient-3);
-  top: 50%;
-  left: 50%;
-  animation-delay: -4s;
+.hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
@@ -187,89 +184,65 @@ export default {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  margin-bottom: 3rem;
 }
 
-.greeting {
-  font-size: 1.2rem;
-  color: var(--primary);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.name {
-  font-size: 4rem;
+/* --- Text column --- */
+.headline {
+  font-size: 2.5rem;
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   color: var(--text);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.education-text {
-  font-size: 1.1rem;
+.sub-headline {
+  font-size: 1.05rem;
   color: var(--primary);
   font-weight: 500;
-  margin-bottom: 1.5rem;
-  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
 }
 
-.description {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  line-height: 1.8;
+.summary {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
   margin-bottom: 2rem;
-  max-width: 550px;
+  max-width: 560px;
 }
 
-.hero-buttons {
+.hero-ctas {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap; /* Allow wrapping for better mobile */
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 0.9rem 2rem;
-  border-radius: 10px;
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  display: inline-block;
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .btn-primary {
-  background: var(--gradient-1);
+  background: var(--gradient-primary);
   color: white;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-}
-
-.btn-outline {
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
 }
 
 .btn-secondary {
@@ -281,137 +254,223 @@ export default {
 .btn-secondary:hover {
   border-color: var(--primary);
   color: var(--primary);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
 }
 
-.social-links {
+.hero-links {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
-.social-links a {
-  width: 45px;
-  height: 45px;
+.hero-links a {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: var(--bg-secondary);
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text);
-  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  transition: all var(--transition-base);
 }
 
-.social-links a:hover {
-  background: var(--gradient-1);
+.hero-links a:hover {
+  background: var(--primary);
+  border-color: var(--primary);
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-.code-window {
-  background: var(--bg-dark);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: float 6s ease-in-out infinite;
+/* --- Architecture Diagram --- */
+.arch-diagram {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
 }
 
-.window-header {
-  background: #1e293b;
-  padding: 0.8rem 1rem;
+.arch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.arch-label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.arch-metric {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--accent-subtle);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+}
+
+.arch-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.arch-node {
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 0.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+}
+
+.arch-node:hover {
+  border-color: var(--primary);
+}
+
+.node-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.node-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+.node-detail {
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.arch-arrow {
+  color: var(--text-tertiary);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+.arch-footer {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #64748b;
+.arch-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: var(--bg-secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
 }
 
-.dot:nth-child(1) {
-  background: #ef4444;
+/* --- Proof Row --- */
+.proof-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.dot:nth-child(2) {
-  background: #f59e0b;
+.proof-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1.25rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-base);
 }
 
-.dot:nth-child(3) {
-  background: #10b981;
+.proof-tile:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-.code-content {
-  padding: 1.5rem;
-  overflow-x: auto;
+.proof-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
 }
 
-.code-content pre {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.8;
+.proof-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
 }
 
-.code-content code {
-  color: #e2e8f0;
-}
-
-.keyword {
-  color: #c678dd;
-}
-
-.class-name {
-  color: #e5c07b;
-}
-
-.function {
-  color: #61afef;
-}
-
-.string {
-  color: #98c379;
-}
-
-.number {
-  color: #d19a66;
-}
-
+/* --- Responsive --- */
 @media (max-width: 968px) {
   .hero-content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
+  }
+
+  .headline {
+    font-size: 2rem;
   }
 
   .hero-visual {
     order: -1;
   }
-
-  .name {
-    font-size: 3rem;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
 }
 
 @media (max-width: 640px) {
-  .name {
-    font-size: 2.5rem;
+  .headline {
+    font-size: 1.65rem;
   }
 
-  .title {
-    font-size: 1.3rem;
-  }
-
-  .hero-buttons {
+  .hero-ctas {
     flex-direction: column;
   }
 
   .btn {
     text-align: center;
+    justify-content: center;
+  }
+
+  .proof-row {
+    grid-template-columns: 1fr;
+  }
+
+  .arch-pipeline {
+    flex-direction: column;
+  }
+
+  .arch-arrow {
+    transform: rotate(90deg);
   }
 }
 </style>
-

@@ -3,20 +3,21 @@
     <div class="container">
       <div class="nav-content">
         <a href="#" class="logo">
-          <span class="logo-text">&lt;AI/ML Engineer /&gt;</span>
+          <span class="logo-text mono">&lt;RR /&gt;</span>
         </a>
-        
+
         <div class="nav-right">
           <ul class="nav-links" :class="{ 'mobile-open': mobileMenuOpen }">
-            <li><a href="#about" @click="closeMobileMenu">About</a></li>
+            <li><a href="#expertise" @click="closeMobileMenu">Expertise</a></li>
+            <li><a href="#experience" @click="closeMobileMenu">Experience</a></li>
             <li><a href="#projects" @click="closeMobileMenu">Projects</a></li>
-            <li><a href="#services" @click="closeMobileMenu">Hire Me</a></li>
+            <li><a href="#education" @click="closeMobileMenu">Education</a></li>
             <li><a href="#contact" @click="closeMobileMenu" class="contact-btn">Contact</a></li>
           </ul>
 
           <button class="theme-toggle" @click="toggleTheme" aria-label="Toggle theme">
             <!-- Sun Icon -->
-            <svg v-if="theme === 'dark'" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg v-if="theme === 'dark'" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -28,7 +29,7 @@
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
             <!-- Moon Icon -->
-            <svg v-else viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg v-else viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </button>
@@ -104,71 +105,89 @@ export default {
   right: 0;
   z-index: 1000;
   background-color: var(--nav-bg);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow var(--transition-base);
 }
 
 .navbar.scrolled {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .nav-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  padding: 0.85rem 0;
 }
 
 .logo {
   text-decoration: none;
   color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
 }
 
-
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
 
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
-.logo-text {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: 'JetBrains Mono', monospace;
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+  background: var(--accent-subtle);
+}
+
+.contact-btn {
+  background: var(--gradient-primary) !important;
+  color: white !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.contact-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  background: var(--gradient-primary) !important;
 }
 
 .theme-toggle {
   background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text);
-  padding: 0.5rem;
-  border-radius: 50%;
   border: 1px solid var(--border);
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0.45rem;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .theme-toggle:hover {
   background: var(--bg-secondary);
-  transform: rotate(15deg);
   color: var(--primary);
   border-color: var(--primary);
 }
@@ -184,106 +203,37 @@ export default {
 }
 
 .mobile-toggle span {
-  width: 25px;
-  height: 3px;
+  width: 22px;
+  height: 2px;
   background-color: var(--text);
   border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  align-items: center;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 500;
-  font-size: 0.95rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 30px;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Liquid Glass Hover Effect */
-.nav-links a:hover {
-  background: rgba(0, 113, 227, 0.08);
-  color: var(--primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 
-    inset 0 0 0 1px rgba(0, 113, 227, 0.1),
-    0 4px 15px rgba(0, 113, 227, 0.1);
-  transform: translateY(-1px);
-}
-
-.nav-links a:active {
-  transform: scale(0.96);
-}
-
-/* Dark mode adjustment for the glass effect */
-:global(body.dark-mode) .nav-links a:hover {
-  background: rgba(10, 132, 255, 0.15);
-  box-shadow: 
-    inset 0 0 0 1px rgba(10, 132, 255, 0.2),
-    0 4px 20px rgba(10, 132, 255, 0.15);
-}
-
-.contact-btn {
-  background: var(--gradient-1);
-  color: white !important;
-  padding: 0.6rem 1.5rem;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-btn::after {
-  display: none;
-}
-
-.contact-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+  transition: all var(--transition-base);
 }
 
 @media (max-width: 768px) {
   .mobile-toggle {
     display: flex;
   }
-  
-  .nav-right {
-    gap: 1rem;
-  }
 
   .nav-links {
     position: fixed;
-    top: 70px;
+    top: 60px;
     left: 0;
     right: 0;
     background-color: var(--bg);
     flex-direction: column;
-    padding: 2rem;
-    gap: 1.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-lg);
     transform: translateY(-120%);
     opacity: 0;
-    transition: all 0.3s ease;
-    border-bottom: 2px solid var(--border);
+    transition: all var(--transition-base);
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-links.mobile-open {
     transform: translateY(0);
     opacity: 1;
   }
-
-  .nav-links a::after {
-    display: none;
-  }
 }
 </style>
-

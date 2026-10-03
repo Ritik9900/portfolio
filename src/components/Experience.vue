@@ -3,25 +3,35 @@
     <div class="container">
       <h2 class="section-title">Work Experience</h2>
       <div class="experience-list">
-        <div class="job-item" v-for="(job, index) in jobs" :key="index">
+        <article class="job-item" v-for="(job, index) in jobs" :key="index">
           <div class="job-header">
             <div class="job-main-info">
               <h3>{{ job.title }}</h3>
               <h4>{{ job.company }}</h4>
+              <p class="job-context" v-if="job.context">{{ job.context }}</p>
             </div>
-            <span class="duration">{{ job.duration }}</span>
+            <span class="duration mono">{{ job.duration }}</span>
           </div>
           <ul class="responsibilities">
-            <li v-for="(resp, idx) in job.responsibilities" :key="idx">
+            <li v-for="(resp, idx) in job.visibleResponsibilities" :key="idx">
+              {{ resp }}
+            </li>
+            <li v-for="(resp, idx) in job.hiddenResponsibilities" :key="'h-' + idx"
+                v-show="job.expanded">
               {{ resp }}
             </li>
           </ul>
+          <button v-if="job.hiddenResponsibilities && job.hiddenResponsibilities.length > 0"
+                  class="show-more-btn"
+                  @click="job.expanded = !job.expanded">
+            {{ job.expanded ? 'Show less' : `Show ${job.hiddenResponsibilities.length} more` }}
+          </button>
           <div class="technologies">
-            <span class="tech-tag" v-for="tech in job.technologies" :key="tech">
+            <span class="tech-tag mono" v-for="tech in job.technologies" :key="tech">
               {{ tech }}
             </span>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -34,43 +44,39 @@ export default {
     return {
       jobs: [
         {
+          title: 'GenAI/ML Engineer',
+          company: 'Ascendion (Client: Charter Communications)',
+          duration: 'Dec 2025 – Present',
+          context: 'Flagship: Enterprise RAG Platform — 7-microservice system for document ingestion, hybrid search, and conversational Q&A over enterprise knowledge bases (SharePoint, Confluence).',
+          visibleResponsibilities: [
+            'Architected a 7-microservice RAG platform (FastAPI, Angular, PostgreSQL + pgvector, Docker) spanning ingestion, retrieval, orchestration, and admin services — enabling conversational Q&A over enterprise SharePoint and Confluence corpora.',
+            'Raised retrieval precision from ~68% to ~91% by building a LangGraph hybrid-search pipeline that fuses dense vector search and BM25 via Reciprocal Rank Fusion, then reranks with a cross-encoder before GPT-4o answer synthesis.',
+            'Eliminated silent ingestion failures by designing a resilient, stateful LangGraph pipeline (IBM Docling parsing, VLM image summarization, semantic chunking, embedding generation) with circuit breakers, exponential-backoff retries, and resumable checkpointing.',
+            'Delivered per-query and per-ingestion-job cost attribution by implementing end-to-end Langfuse tracing across 4 microservices (trace context propagated via HTTP headers) and threading token-usage data through embedding and VLM calls.'
+          ],
+          hiddenResponsibilities: [
+            'Automated enterprise knowledge sync by building a scheduled batch-ingestion service over Microsoft Graph (SharePoint) and Confluence Cloud APIs that discovers and ingests new/changed source documents without manual triggers.',
+            'Restored system-wide trace visibility and LLM cost tracking by diagnosing and fixing production bugs — broken exception handling in Python context managers and missing trace-ID propagation — that were silently disabling distributed tracing.',
+            'Instrumented a 14-node LangGraph pipeline with zero changes to node implementations by introducing decorator-based auto-instrumentation — full observability as a cross-cutting concern.',
+            'Scaled multimodal ingestion to 300+ visual elements per document (charts, tables, images) with VLM-generated, deduplication-cached summaries; sustained 500+ concurrent users at 99.9% availability on auto-scaling ECS Fargate (2→10 containers).',
+            'Improved GPU utilization by ~95% by decoupling inference: answer synthesis offloaded to an external LLM API while the VLM runs on on-demand Spot GPU instances.'
+          ],
+          technologies: ['LangGraph', 'FastAPI', 'pgvector', 'GPT-4o', 'Langfuse', 'AWS ECS', 'Docker', 'PostgreSQL', 'Redis'],
+          expanded: false
+        },
+        {
           title: 'AI/ML Engineer',
-          company: 'Company Name',
-          duration: 'Jan 2024 - Present',
-          responsibilities: [
-            'Developed and deployed deep learning models for computer vision applications, achieving 95% accuracy',
-            'Built scalable machine learning pipelines using TensorFlow and PyTorch',
-            'Implemented data preprocessing and feature engineering workflows for large datasets',
-            'Collaborated with cross-functional teams to integrate ML models into production systems',
-            'Optimized model performance and reduced inference time by 40%'
+          company: 'Gmonks',
+          duration: 'Oct 2024 – Nov 2025',
+          context: null,
+          visibleResponsibilities: [
+            'Cut client application size by 80 MB by moving YOLOv8 inference (0.339 mAP) to remote serving on AWS ECS Fargate behind a FastAPI API handling thousands of daily requests.',
+            'Secured media delivery with ephemeral signed URLs and owned the full MLOps lifecycle from training to monitored production deployment.',
+            'Reduced environment setup time by 95% and achieved 100% reproducible cloud environments by codifying all infrastructure in Terraform.'
           ],
-          technologies: ['Python', 'TensorFlow', 'PyTorch', 'Docker', 'AWS', 'Scikit-learn']
-        },
-        {
-          title: 'Full-Stack Developer (Contract)',
-          company: 'Freelance/Previous Company',
-          duration: 'Jun 2023 - Dec 2023',
-          responsibilities: [
-            'Designed and developed responsive frontend applications using Vue.js',
-            'Built RESTful APIs and backend services for Unity game applications',
-            'Implemented real-time data synchronization between Unity clients and server',
-            'Created admin dashboards for game analytics and user management',
-            'Improved application performance and user experience'
-          ],
-          technologies: ['Vue.js', 'Node.js', 'Unity', 'C#', 'MongoDB', 'REST API']
-        },
-        {
-          title: 'Data Science Intern',
-          company: 'Company/University',
-          duration: 'Jan 2023 - May 2023',
-          responsibilities: [
-            'Conducted exploratory data analysis on large datasets to extract actionable insights',
-            'Built predictive models for business forecasting using machine learning',
-            'Created interactive data visualizations using Python libraries',
-            'Assisted in research projects related to natural language processing',
-            'Documented findings and presented results to stakeholders'
-          ],
-          technologies: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Scikit-learn', 'Jupyter']
+          hiddenResponsibilities: [],
+          technologies: ['YOLOv8', 'FastAPI', 'AWS ECS Fargate', 'Terraform', 'Docker', 'Python'],
+          expanded: false
         }
       ]
     }
@@ -84,71 +90,77 @@ export default {
 }
 
 .experience-list {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .job-item {
   background: var(--card-bg);
-  padding: 2.5rem;
-  border-radius: 12px;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  transition: all 0.3s ease;
-  position: relative;
+  transition: all var(--transition-base);
 }
 
 .job-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   border-color: var(--primary);
+  box-shadow: var(--shadow-md);
 }
 
 .job-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border);
 }
 
 .job-main-info h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--text);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
   letter-spacing: -0.01em;
 }
 
 .job-main-info h4 {
   font-size: 1rem;
   font-weight: 500;
-  color: var(--text-light);
+  color: var(--text-secondary);
+}
+
+.job-context {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--primary);
 }
 
 .duration {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--primary);
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 }
 
 .responsibilities {
   list-style: none;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .responsibilities li {
   position: relative;
   padding-left: 1.2rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.75rem;
   color: var(--text);
-  line-height: 1.6;
-  font-size: 0.95rem;
+  line-height: 1.65;
+  font-size: 0.92rem;
 }
 
 .responsibilities li::before {
@@ -156,27 +168,44 @@ export default {
   position: absolute;
   left: 0;
   top: 0.6rem;
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--text-light);
+  background: var(--primary);
+  opacity: 0.6;
+}
+
+.show-more-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  margin-bottom: 1.25rem;
+  transition: opacity var(--transition-fast);
+}
+
+.show-more-btn:hover {
+  opacity: 0.8;
 }
 
 .technologies {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .tech-tag {
-  padding: 0.3rem 0.8rem;
-  background: var(--bg);
-  border-radius: 20px;
-  font-size: 0.8rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--bg-secondary);
+  border-radius: 100px;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--primary);
   border: 1px solid transparent;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .tech-tag:hover {
@@ -189,10 +218,9 @@ export default {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .job-item {
     padding: 1.5rem;
   }
 }
 </style>
-

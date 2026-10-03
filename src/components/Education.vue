@@ -2,52 +2,40 @@
   <section class="education section" id="education">
     <div class="container">
       <h2 class="section-title">Education</h2>
+
       <div class="education-grid">
-        <div class="education-card" v-for="edu in education" :key="edu.degree">
-          <div class="edu-content">
-            <div class="edu-header">
-              <div>
-                <h3>{{ edu.degree }}</h3>
-                <h4>{{ edu.school }}</h4>
-              </div>
-              <span class="duration">{{ edu.duration }}</span>
+        <article class="education-card" v-for="edu in education" :key="edu.degree">
+          <div class="edu-header">
+            <div>
+              <h3>{{ edu.degree }}</h3>
+              <h4>{{ edu.school }}</h4>
             </div>
-            
-            <div class="minors" v-if="edu.minors">
-              <p class="minors-title">Minors:</p>
-              <div class="minors-list">
-                <span v-for="minor in edu.minors" :key="minor" class="minor-tag">
-                  {{ minor }}
-                </span>
-              </div>
-            </div>
+            <span class="duration mono">{{ edu.duration }}</span>
+          </div>
 
-            <ul class="highlights" v-if="edu.highlights">
-              <li v-for="highlight in edu.highlights" :key="highlight">
-                {{ highlight }}
-              </li>
-            </ul>
-
-            <div class="coursework" v-if="edu.coursework">
-              <p class="coursework-title">Key Coursework:</p>
-              <div class="coursework-tags">
-                <span v-for="course in edu.coursework" :key="course">
-                  {{ course }}
-                </span>
-              </div>
+          <div class="minors" v-if="edu.minors">
+            <p class="minors-title">Minors:</p>
+            <div class="minors-list">
+              <span v-for="minor in edu.minors" :key="minor" class="minor-tag">{{ minor }}</span>
             </div>
           </div>
-        </div>
+
+          <div class="coursework" v-if="edu.coursework">
+            <p class="coursework-title">Key Coursework:</p>
+            <div class="coursework-tags">
+              <span v-for="course in edu.coursework" :key="course">{{ course }}</span>
+            </div>
+          </div>
+        </article>
       </div>
 
+      <!-- Certifications strip -->
       <div class="certifications">
-        <h3 class="cert-title">Certifications & Achievements</h3>
-        <div class="cert-grid">
+        <h3 class="cert-title">Certifications</h3>
+        <div class="cert-strip">
           <div class="cert-item" v-for="cert in certifications" :key="cert.name">
-            <div class="cert-content">
-              <h4>{{ cert.name }}</h4>
-              <p>{{ cert.issuer }}</p>
-            </div>
+            <h4>{{ cert.name }}</h4>
+            <p>{{ cert.issuer }}</p>
           </div>
         </div>
       </div>
@@ -64,14 +52,8 @@ export default {
         {
           degree: 'Bachelor of Science in Data Science',
           school: 'Indian Institute of Technology Madras (IIT-M)',
-          duration: '2021 - 2025',
+          duration: '2021 – 2025',
           minors: ['Minor in Economics & Finance', 'Minor in Cloud Computing'],
-          highlights: [
-            'GPA: 8.0/10.0',
-            'Dean\'s List (All Semesters)',
-            'Research Assistant in AI Lab',
-            'Published research paper on deep learning applications'
-          ],
           coursework: [
             'Machine Learning', 'Deep Learning', 'Neural Networks',
             'Statistical Analysis', 'Data Mining', 'Computer Vision',
@@ -80,10 +62,12 @@ export default {
         }
       ],
       certifications: [
-        { name: 'TensorFlow Developer Certificate', issuer: 'Google' },
-        { name: 'AWS Machine Learning Specialty', issuer: 'Amazon Web Services' },
-        { name: 'Deep Learning Specialization', issuer: 'DeepLearning.AI' },
-        { name: 'Vue.js Certification', issuer: 'Vue School' }
+        { name: 'NPTEL Cloud Computing', issuer: 'IIT Kharagpur / NPTEL' },
+        { name: 'Supervised Machine Learning', issuer: 'Stanford / Coursera' },
+        { name: 'NPTEL Data Mining', issuer: 'IIT Kharagpur / NPTEL' },
+        { name: 'NPTEL Emotional Intelligence', issuer: 'IIT / NPTEL' },
+        { name: 'Advanced MCP', issuer: 'Anthropic' },
+        { name: 'DP-800', issuer: 'Microsoft Azure' }
       ]
     }
   }
@@ -96,54 +80,49 @@ export default {
 }
 
 .education-grid {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto 4rem;
+  margin-bottom: 3rem;
 }
 
 .education-card {
   background: var(--card-bg);
-  border-radius: 12px;
-  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
   border: 1px solid var(--border);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .education-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border-color: var(--primary);
+  box-shadow: var(--shadow-md);
 }
 
 .edu-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border);
 }
 
 .edu-header h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--text);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
   letter-spacing: -0.01em;
 }
 
 .edu-header h4 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
-  color: var(--text-light);
+  color: var(--text-secondary);
 }
 
 .duration {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--primary);
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -151,126 +130,94 @@ export default {
   margin-bottom: 1.5rem;
 }
 
-.minors-title {
+.minors-title,
+.coursework-title {
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
 }
 
 .minors-list {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
 }
 
 .minor-tag {
-  padding: 0.4rem 1rem;
-  background: var(--bg-secondary); /* Clean background instead of gradient */
+  padding: 0.35rem 0.9rem;
+  background: var(--accent-subtle);
   color: var(--primary);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
   font-weight: 500;
-}
-
-.highlights {
-  list-style: none;
-  margin-bottom: 2rem;
-}
-
-.highlights li {
-  position: relative;
-  padding-left: 1.2rem;
-  margin-bottom: 0.6rem;
-  color: var(--text);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.highlights li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.6rem;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--text-light);
-}
-
-.coursework-title {
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
 }
 
 .coursework-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .coursework-tags span {
-  padding: 0.3rem 0.8rem;
-  background: var(--bg);
-  border-radius: 6px;
-  font-size: 0.85rem;
+  padding: 0.25rem 0.7rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-light);
+  color: var(--text-secondary);
   border: 1px solid transparent;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .coursework-tags span:hover {
   color: var(--primary);
-  background: var(--bg-secondary);
+  border-color: var(--primary);
 }
 
+/* Certifications strip */
 .certifications {
-  width: 100%;
-  max-width: 100%;
+  text-align: center;
 }
 
 .cert-title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   color: var(--text);
 }
 
-.cert-grid {
+.cert-strip {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
 }
 
 .cert-item {
   background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
-  transition: all 0.3s ease;
+  text-align: left;
+  transition: all var(--transition-base);
 }
 
 .cert-item:hover {
-  transform: translateY(-3px);
   border-color: var(--primary);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
 }
 
 .cert-item h4 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.15rem;
 }
 
 .cert-item p {
-  font-size: 0.85rem;
-  color: var(--text-light);
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
 }
 
 @media (max-width: 768px) {
@@ -278,14 +225,19 @@ export default {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
-  .duration {
-    align-self: flex-start;
-  }
-  
+
   .education-card {
     padding: 1.5rem;
   }
+
+  .cert-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cert-strip {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
-
