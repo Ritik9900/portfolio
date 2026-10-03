@@ -3,31 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ritik Ranjan — GenAI/ML Engineer | Production RAG Systems</title>
-    <meta name="description" content="Machine learning engineer specializing in production RAG systems, hybrid retrieval, LLM observability, and high-throughput FastAPI backends on AWS." />
+    <title>Ritik Ranjan — GenAI Engineer &amp; Data Scientist</title>
+    <meta name="description" content="GenAI engineer and data scientist building production RAG pipelines, AI voice-testing systems and machine learning models. IIT Madras BS in Data Science." />
     <link rel="canonical" href="https://ritik9900.github.io/portfolio/" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Ritik Ranjan — GenAI/ML Engineer" />
-    <meta property="og:description" content="Machine learning engineer specializing in production RAG systems, hybrid retrieval, LLM observability, and high-throughput FastAPI backends on AWS." />
+    <meta property="og:title" content="Ritik Ranjan — GenAI Engineer &amp; Data Scientist" />
+    <meta property="og:description" content="GenAI engineer and data scientist building production RAG pipelines, AI voice-testing systems and machine learning models. IIT Madras BS in Data Science." />
     <meta property="og:url" content="https://ritik9900.github.io/portfolio/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#0b0f19" />
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1012" media="(prefers-color-scheme: dark)" />
+
+    <!-- Apply the saved or system theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        var t
+        try { t = localStorage.getItem('theme') } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.setAttribute('data-theme', t)
+      })()
+    </script>
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
-      "dateModified": "2026-07-09",
+      "dateModified": "2026-10-03",
       "mainEntity": {
         "@type": "Person",
         "@id": "https://ritik9900.github.io/portfolio/#ritik-ranjan",
         "name": "Ritik Ranjan",
-        "jobTitle": "GenAI / Machine Learning Engineer",
-        "description": "Machine learning engineer specializing in production RAG systems, hybrid retrieval, LLM observability, and high-throughput FastAPI backends on AWS.",
+        "jobTitle": "GenAI Engineer",
+        "description": "GenAI engineer and data scientist building production RAG pipelines, AI voice-testing systems and machine learning models. IIT Madras BS in Data Science.",
         "alumniOf": {
           "@type": "CollegeOrUniversity",
           "name": "Indian Institute of Technology Madras",
@@ -35,7 +48,7 @@
         },
         "worksFor": { "@type": "Organization", "name": "Ascendion" },
         "knowsAbout": [
-          "Retrieval-Augmented Generation", "LangGraph", "Hybrid Search",
+          "Data Science", "Machine Learning", "Retrieval-Augmented Generation", "LangGraph", "Hybrid Search", "Voice AI",
           "Vector Databases", "FastAPI", "Distributed Tracing", "MLOps",
           "AWS ECS Fargate", "PyTorch", "Computer Vision"
         ],
@@ -45,7 +58,7 @@
           "https://www.kaggle.com/ritik9929"
         ],
         "url": "https://ritik9900.github.io/portfolio/",
-        "email": "mailto:ritik.ranjan9900@gmail.com"
+        "email": "mailto:ritikranjan1212@gmail.com"
       }
     }
     </script>

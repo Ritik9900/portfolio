@@ -1,0 +1,111 @@
+/* Shared styling for hand-authored SVG diagrams. Colours come from theme tokens. */
+.dg {
+  width: 100%;
+  height: auto;
+  font-family: var(--font-sans);
+}
+
+.dg text {
+  fill: var(--text);
+}
+
+.dg-title {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.dg-title.mono {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+
+.dg .dg-sub {
+  font-size: 10.5px;
+  fill: var(--text-3);
+}
+
+.dg .dg-group-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  fill: var(--text-3);
+}
+
+.dg .dg-edge-label {
+  font-size: 10.5px;
+  fill: var(--text-3);
+}
+
+.dg-node rect {
+  fill: var(--dg-node);
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
+.dg-node.is-dashed rect {
+  stroke-dasharray: 4 3;
+}
+
+.dg-tone-store rect {
+  fill: var(--dg-store);
+  stroke: var(--dg-store-b);
+}
+
+.dg-tone-edge rect {
+  fill: var(--dg-edge);
+  stroke: var(--dg-edge-b);
+}
+
+.dg-tone-ai rect {
+  fill: var(--dg-ai);
+  stroke: var(--dg-ai-b);
+}
+
+.dg-tone-accent rect {
+  stroke: var(--dg-accent);
+  stroke-width: 1.5;
+}
+
+.dg-group {
+  stroke-width: 1;
+}
+
+.dg-group.ingest {
+  fill: var(--dg-ingest);
+  stroke: var(--dg-ingest-b);
+}
+
+.dg-group.serve {
+  fill: var(--dg-serve);
+  stroke: var(--dg-serve-b);
+}
+
+.dg-group.boundary {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-dasharray: 5 4;
+}
+
+.dg-line {
+  fill: none;
+  stroke: var(--dg-line);
+  stroke-width: 1.4;
+}
+
+.dg-line.dashed {
+  stroke-dasharray: 4 3;
+}
+
+.dg-line.accent {
+  stroke: var(--dg-accent);
+}
+
+.dg-marker {
+  fill: var(--dg-line);
+}
+
+.dg-marker.accent {
+  fill: var(--dg-accent);
+}

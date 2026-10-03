@@ -1,182 +1,65 @@
-# AI/ML Engineer Portfolio
+# Portfolio — Ritik Ranjan
 
-A modern, professional portfolio website built with Vue.js to showcase my skills, projects, and experience as an AI/ML Engineer.
+Personal site at <https://ritik9900.github.io/portfolio/>. Vue 3 + Vite, deployed to GitHub Pages by
+`.github/workflows/deploy.yml` on every push to `main`.
 
-## 🚀 Features
+## Run locally
 
-- **Responsive Design** - Looks great on all devices
-- **Modern UI/UX** - Clean and professional design with smooth animations
-- **Orange/Yellow Gradient Theme** - Warm, professional color scheme
-- **Sections Include:**
-  - Hero section with animated code window
-  - About Me with statistics
-  - Skills & Technologies organized by category
-  - Work Experience timeline
-  - Featured Projects showcase
-  - Education & Certifications
-  - **Resume & Documents Viewer** - View-only PDF viewer for resume and certificates
-  - **Working Contact Form** - Receive messages directly to your email
-  - Social links
-
-## 🛠️ Built With
-
-- **Vue.js 3** - Progressive JavaScript framework
-- **Vite** - Next generation frontend tooling
-- **CSS3** - Modern styling with gradients and animations
-- **GitHub Pages** - Free hosting
-
-## 📦 Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-```
-
-2. Install dependencies:
 ```bash
 npm install
+npm run dev      # http://localhost:5173/portfolio/
+npm run build    # production build in dist/
+npm run preview  # serve the production build
 ```
 
-3. Run the development server:
-```bash
-npm run dev
-```
+Requires Node 20+.
 
-4. Open your browser and visit `http://localhost:5173`
+## Where things live
 
-## ⚙️ Initial Setup
+| To change… | Edit |
+|---|---|
+| Name, headline, links, email, metrics, experience, skills, education, certifications | `src/data/profile.js` |
+| Kaggle competitions and their notebooks | `src/data/kaggle.js` + `public/notebooks/` |
+| System design case studies (text, tables, decisions) | `src/data/caseStudies.js` |
+| Architecture diagrams | `src/components/diagrams/*.vue` |
+| Colours, typography, light/dark tokens | `src/style.css` |
+| Resume PDF | `public/documents/Ritik_Ranjan.pdf` (path set in `profile.js`) |
+| Photos | `public/images/` |
 
-### 1. Contact Form Setup (Required)
-The contact form sends emails directly to your inbox using Web3Forms.
+Pages:
 
-**Quick Setup:**
-1. Go to [web3forms.com](https://web3forms.com)
-2. Enter your email and get a free access key
-3. Open `src/components/Contact.vue` (line 134)
-4. Replace `YOUR_WEB3FORMS_ACCESS_KEY` with your actual key
+- `/` — home
+- `/projects/<slug>` — case study (one per entry in `caseStudies.js`)
+- `/kaggle/<slug>` — competition write-up and in-page notebook viewer
 
-📖 **Detailed guide:** See [CONTACT_SETUP.md](CONTACT_SETUP.md)
+## Publishing a Kaggle notebook
 
-### 2. Add Your PDF Documents (Required)
-Place your PDF files in `public/documents/`:
-- `resume.pdf` - Your resume/CV
-- `degree.pdf` - Your degree certificate  
-- `minor1.pdf` - First minor certificate
-- `minor2.pdf` - Second minor certificate
+1. On Kaggle, open the notebook → **File → Download notebook** (`.ipynb`).
+2. Put it in `public/notebooks/`, named `<slug>.ipynb` where `<slug>` is the competition's `slug` in
+   `src/data/kaggle.js` — or keep Kaggle's filename and set `notebook: '<filename>.ipynb'` on that entry.
 
-📖 **Detailed guide:** See [PDF_SETUP.md](PDF_SETUP.md)
+That's all: the notebook list is generated from the folder at build time (and live in `npm run dev`, which also
+warns in the browser console about notebooks that don't match any competition). The page at `/kaggle/<slug>`
+then renders Markdown, syntax-highlighted code, text/HTML/DataFrame outputs, images and tracebacks, with
+show/hide toggles and a download button. All HTML output is sanitised with DOMPurify.
 
-## 🎨 Customization
+Before publishing, run the notebook top to bottom so outputs are saved, and check it for API keys, Kaggle
+credentials or local file paths — the `.ipynb` file is served publicly. For course competitions (e.g. IIT
+Madras DLP), check the course's policy on sharing solutions first.
 
-To personalize this portfolio for yourself, update the following:
+## Adding a case study
 
-### 1. Personal Information
-- Edit `src/components/Hero.vue` - Update name, title, and description
-- Edit `src/components/About.vue` - Update your bio and statistics
-- Edit `src/components/Contact.vue` - Update contact information
+Add an object to `caseStudies` in `src/data/caseStudies.js`. Each section is a list of blocks:
 
-### 2. Skills
-- Edit `src/components/Skills.vue` - Update the `skillCategories` array with your skills
+- `{ type: 'md', text }` — Markdown, including tables
+- `{ type: 'diagram', name, caption }` — a component registered in `src/components/diagrams/index.js`
+- `{ type: 'image', src, alt, caption }` — an exported diagram (PNG/SVG) placed in `public/`
+- `{ type: 'decisions', items: [{ title, alternatives, why, cost }] }`
+- `{ type: 'callout', text }`
 
-### 3. Experience
-- Edit `src/components/Experience.vue` - Update the `jobs` array with your work experience
+The route page and the static deep-link copy for GitHub Pages are generated automatically.
 
-### 4. Projects
-- Edit `src/components/Projects.vue` - Update the `projects` array with your projects
-- Add GitHub and demo links
+## Deep links on GitHub Pages
 
-### 5. Education
-- Edit `src/components/Education.vue` - Update your degree, minors, and certifications
-
-### 6. Social Links
-Update links throughout the components:
-- GitHub: Replace `yourusername` with your GitHub username
-- LinkedIn: Replace `yourusername` with your LinkedIn username
-- Email: Replace `your.email@example.com` with your email
-
-### 7. Resume & Certificates
-- Edit `src/components/Resume.vue` - Update document titles and descriptions
-- Place your PDF files in `public/documents/` folder
-- See [PDF_SETUP.md](PDF_SETUP.md) for detailed instructions
-
-### 8. Colors & Branding
-Current theme: Orange/Yellow gradient
-Edit `src/style.css` to change the color scheme:
-```css
-:root {
-  --primary: #f59e0b;
-  --secondary: #fb923c;
-  --accent: #fbbf24;
-  /* ... more colors */
-}
-```
-
-## 🚢 Deployment to GitHub Pages
-
-### Method 1: Using GitHub Actions (Recommended)
-
-1. Update the `base` path in `vite.config.js`:
-```javascript
-export default defineConfig({
-  base: '/your-repo-name/',
-  // ...
-})
-```
-
-2. Go to your GitHub repository settings
-3. Navigate to **Settings > Pages**
-4. Under **Source**, select **GitHub Actions**
-5. Push your changes to the `main` branch
-6. GitHub Actions will automatically build and deploy your site
-
-### Method 2: Manual Deployment
-
-1. Build the project:
-```bash
-npm run build
-```
-
-2. Deploy to GitHub Pages:
-```bash
-npm run deploy
-```
-
-Your portfolio will be live at: `https://yourusername.github.io/portfolio/`
-
-## 📱 Responsive Breakpoints
-
-- Desktop: 1200px+
-- Tablet: 768px - 1199px
-- Mobile: < 768px
-
-## 🎯 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 🤝 Contributing
-
-Feel free to fork this project and customize it for your own use. If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
-
-## ⭐ Show Your Support
-
-If you found this portfolio template helpful, please consider giving it a star on GitHub!
-
-## 📧 Contact
-
-Your Name - your.email@example.com
-
-GitHub: [@yourusername](https://github.com/yourusername)
-LinkedIn: [Your Name](https://linkedin.com/in/yourusername)
-
----
-
-Made with ❤️ and ☕ using Vue.js
-
+GitHub Pages has no SPA rewrites. `scripts/postbuild.mjs` copies `index.html` to every case-study and Kaggle
+route, plus `404.html`, so shared links load directly.
