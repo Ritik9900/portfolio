@@ -114,27 +114,52 @@ export const education = {
   photo: 'images/iitm-campus.jpg'
 }
 
-// `url` opens the credential; null shows the certificate without a link.
+// Proctored certifications with an official badge image (in public/). Shown in the hero and in
+// Education. `short` is the two-line hero label.
 export const certifications = [
   {
-    name: 'SQL AI Developer Associate',
-    issuer: 'Microsoft Certified',
+    name: 'AWS Certified AI Practitioner',
+    short: ['AWS Certified', 'AI Practitioner'],
+    issuer: 'Amazon Web Services · Foundational · 2026',
+    badge: 'images/badges/aws-ai-practitioner.png',
+    url: 'https://www.credly.com/badges/9d60a485-2423-4356-9711-7c7c8f17e413/public_url'
+  },
+  {
+    name: 'Microsoft Certified: SQL AI Developer Associate',
+    short: ['Microsoft Certified', 'SQL AI Developer Associate'],
+    issuer: 'Microsoft · Associate',
+    badge: 'images/badges/microsoft-certified-associate.svg',
     url: 'https://learn.microsoft.com/api/credentials/share/en-us/RitikRanjan-2755/5F3F19AA5241EE7C?sharingId=48F96758124519CF'
+  }
+]
+
+// Course and program completions (no official badge). `logo` is an Icon.vue name for issuers with a
+// freely licensed mark, otherwise `initials`. `url: null` lists it without a link.
+export const courses = [
+  {
+    name: 'Gen AI Academy APAC 2026',
+    issuer: 'Google Cloud · Hack2skill · Cohort 3',
+    logo: 'googlecloud',
+    // Building, deploying and orchestrating AI agents on Cloud Run.
+    url: 'https://drive.google.com/file/d/1TMcP6qJ4jnscw8pr3SGsjQ_Sbs1CbJIR/view?usp=sharing'
   },
   {
     name: 'Model Context Protocol: Advanced Topics',
     issuer: 'Anthropic',
+    logo: 'anthropic',
     url: 'https://verify.skilljar.com/c/dg9m9ohssx79'
   },
   {
     name: 'Supervised Machine Learning',
     issuer: 'Stanford · Coursera',
+    logo: 'coursera',
     // The resume's link for this certificate opens "Emotional Intelligence.pdf"; add the correct one here.
     url: null
   },
   {
     name: 'Data Mining',
     issuer: 'NPTEL · IIT Kharagpur',
+    initials: 'NP',
     url: 'https://drive.google.com/file/d/1lKqptf_kalcEnRMViG2xvVAvf3RoWJnU/view'
   }
 ]

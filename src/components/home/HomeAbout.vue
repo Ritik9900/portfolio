@@ -30,16 +30,34 @@
         <h3 class="sub">Certifications</h3>
         <ul class="certs">
           <li v-for="c in certifications" :key="c.name">
-            <component
-              :is="c.url ? 'a' : 'div'"
-              class="cert"
-              v-bind="c.url ? { href: c.url, target: '_blank', rel: 'noopener', 'aria-label': `View ${c.name} certificate (opens in a new tab)` } : {}"
-            >
+            <a :href="c.url" target="_blank" rel="noopener" class="cert" :aria-label="`${c.name} — view credential (opens in a new tab)`">
+              <img :src="asset(c.badge)" alt="" width="88" height="88" loading="lazy" class="cert-badge" />
               <span class="cert-text">
                 <span class="cert-name">{{ c.name }}</span>
                 <span class="cert-issuer">{{ c.issuer }}</span>
+                <span class="cert-verify">Verify credential <Icon name="arrow-up-right" :size="13" /></span>
               </span>
-              <span v-if="c.url" class="cert-view">View <Icon name="arrow-up-right" :size="13" /></span>
+            </a>
+          </li>
+        </ul>
+
+        <h3 class="sub">Courses &amp; programs</h3>
+        <ul class="courses">
+          <li v-for="c in courses" :key="c.name">
+            <component
+              :is="c.url ? 'a' : 'div'"
+              class="course"
+              v-bind="c.url ? { href: c.url, target: '_blank', rel: 'noopener', 'aria-label': `${c.name}, ${c.issuer} — view certificate (opens in a new tab)` } : {}"
+            >
+              <span class="course-logo" aria-hidden="true">
+                <Icon v-if="c.logo" :name="c.logo" :size="18" />
+                <span v-else class="mono">{{ c.initials }}</span>
+              </span>
+              <span class="course-text">
+                <span class="course-name">{{ c.name }}</span>
+                <span class="course-issuer">{{ c.issuer }}</span>
+              </span>
+              <Icon v-if="c.url" name="arrow-up-right" :size="16" class="course-go" />
             </component>
           </li>
         </ul>
@@ -50,9 +68,10 @@
 
 <script setup>
 import Icon from '../Icon.vue'
-import { certifications, education, skills } from '../../data/profile.js'
+import { certifications, courses, education, skills } from '../../data/profile.js'
 
 const photo = `${import.meta.env.BASE_URL}${education.photo}`
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 </script>
 
 <style scoped>
@@ -138,52 +157,125 @@ h3 {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 32px;
-}
-
-.certs li {
-  border-bottom: 1px solid var(--border);
-  font-size: 0.9375rem;
+  gap: 16px;
 }
 
 .cert {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
-  padding: 12px 0;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.15s ease;
+}
+
+.cert:hover {
+  border-color: var(--accent);
+}
+
+.cert-badge {
+  flex-shrink: 0;
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
 }
 
 .cert-text {
   display: flex;
   flex-direction: column;
+  gap: 2px;
   min-width: 0;
 }
 
 .cert-name {
-  font-weight: 550;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .cert-issuer {
-  color: var(--text-3);
   font-size: 0.8125rem;
+  color: var(--text-3);
 }
 
-.cert-view {
+.cert-verify {
+  margin-top: 6px;
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  flex-shrink: 0;
+  gap: 3px;
   font-size: 0.8125rem;
   font-weight: 550;
   color: var(--accent);
 }
 
-a.cert:hover .cert-name {
+.courses {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 32px;
+}
+
+.courses li {
+  border-bottom: 1px solid var(--border);
+}
+
+.course {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  font-size: 0.9375rem;
+}
+
+.course-logo {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border);
+  color: var(--text-2);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.course-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-right: auto;
+}
+
+.course-name {
+  font-weight: 550;
+}
+
+.course-issuer {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+}
+
+.course-go {
+  flex-shrink: 0;
+  color: var(--text-3);
+}
+
+a.course:hover .course-name,
+a.course:hover .course-go {
   color: var(--accent);
 }
 
 @media (max-width: 760px) {
+  .certs,
+  .courses {
+    grid-template-columns: 1fr;
+  }
+
   .skill {
     grid-template-columns: 1fr;
     gap: 2px;
@@ -197,8 +289,5 @@ a.cert:hover .cert-name {
     max-width: 420px;
   }
 
-  .certs {
-    grid-template-columns: 1fr;
-  }
 }
 </style>

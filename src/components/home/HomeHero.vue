@@ -30,6 +30,18 @@
         </div>
       </div>
 
+      <ul class="certified" aria-label="Certifications">
+        <li v-for="c in certifications" :key="c.name">
+          <a :href="c.url" target="_blank" rel="noopener" class="cert" :aria-label="`${c.name} — view credential (opens in a new tab)`">
+            <img :src="`${base}${c.badge}`" alt="" width="44" height="44" />
+            <span class="cert-label">
+              <span>{{ c.short[0] }}</span>
+              <span class="cert-sub">{{ c.short[1] }}</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+
       <ul class="metrics">
         <li v-for="m in profile.metrics" :key="m.label">
           <RouterLink :to="m.href" class="metric">
@@ -44,7 +56,7 @@
 
 <script setup>
 import Icon from '../Icon.vue'
-import { profile } from '../../data/profile.js'
+import { certifications, profile } from '../../data/profile.js'
 
 const base = import.meta.env.BASE_URL
 const avatar = `${base}${profile.avatar}`
@@ -118,6 +130,50 @@ h1 {
 .socials {
   display: flex;
   gap: 2px;
+}
+
+.certified {
+  list-style: none;
+  padding: 0;
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+
+.cert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cert img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  transition: transform 0.15s ease;
+}
+
+.cert:hover img {
+  transform: translateY(-2px);
+}
+
+.cert-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.cert-sub {
+  font-weight: 450;
+  color: var(--text-3);
+}
+
+.cert:hover .cert-label > span:first-child {
+  color: var(--accent);
 }
 
 .metrics {
