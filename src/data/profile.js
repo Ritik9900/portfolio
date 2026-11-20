@@ -118,6 +118,13 @@ export const education = {
 // Education. `short` is the two-line hero label.
 export const certifications = [
   {
+    name: 'Claude Certified Associate – Foundations',
+    short: ['Claude Certified', 'Associate – Foundations'],
+    issuer: 'Anthropic · Foundational · 2026',
+    badge: 'images/badges/claude-certified-associate.png',
+    url: 'https://www.credly.com/badges/4fc22094-4d7e-4040-86c8-a2a5754d5d19/public_url'
+  },
+  {
     name: 'AWS Certified AI Practitioner',
     short: ['AWS Certified', 'AI Practitioner'],
     issuer: 'Amazon Web Services · Foundational · 2026',
